@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>S4ILERS | JOHN</title>
+    <style>
+        /* the css is applied directly here cus i cant be asked to create a another css file and link the html with it */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+ 
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+ 
+        h1 {
+            margin-bottom: 20px;
+        }
+ 
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+ 
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+ 
+        .yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+ 
+        .no {
+            background-color: #f44336;
+            color: white;
+        }
+ 
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main contianer is created here -->
+    <div class="container">
+        <h1>Do u like hidden devs?</h1>
+ 
+        <!-- im creating the yes and no buttons here -->
+
+        <button class="yes" onclick="sayYes()">Yes</button>
+        <button class="no" onclick="sayNo()">No</button>
+        <!-- the result div is created here so later we can use this in the js below -->
+
+        <div id="result"></div>
+    </div>
+ 
+    <script>
+        // applied inline js because i dont wanna connect the html with external js file
+        // creating the sayYes and sayNo functions below and updating the results div depending on the user's action
+
+        function sayYes() {
+            const result = document.getElementById("result");
+            result.textContent = "Hurray";
+            result.style.color = "green";
+        }
+ 
+        function sayNo() {
+            const result = document.getElementById("result");
+            result.textContent = "noob";
+            result.style.color = "red";
+        }
+    </script>
+ 
+</body>
+</html>

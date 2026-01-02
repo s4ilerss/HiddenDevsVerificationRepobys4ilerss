@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hidden Devs To-Do</title>
+
+    <style>
+        /* basic page styling to center everything */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* main todo container */
+        .todo {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* heading styling */
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* input box styling */
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        /* add task button styling */
+        button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+        }
+
+        /* simple hover effect */
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* task list container */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        /* each task item */
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #eee;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+
+        /* remove (delete) button styling */
+        .remove {
+            background: #f44336;
+            border: none;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- main todo app container -->
+<div class="todo">
+    <h1>Hidden Devs To-Do</h1>
+
+    <!-- input field where user types the task -->
+    <input id="taskInput" type="text" placeholder="Enter a task">
+
+    <!-- button that triggers the addTask function -->
+    <button onclick="addTask()">Add Task</button>
+
+    <!-- empty list where tasks will be added dynamically -->
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    // function that runs when the user clicks "Add Task"
+    function addTask() {
+        // grabbing the input element
+        const input = document.getElementById("taskInput");
+
+        // trimming the input value to avoid empty spaces
+        const taskText = input.value.trim();
+
+        // if input is empty, stop the function
+        if (taskText === "") return;
+
+        // creating a new list item
+        const li = document.createElement("li");
+
+        // inserting the task text and a remove button
+        li.innerHTML = `
+            ${taskText}
+            <button class="remove" onclick="this.parentElement.remove()">X</button>
+        `;
+
+        // adding the new task to the list
+        document.getElementById("taskList").appendChild(li);
+
+        // clearing the input after adding the task
+        input.value = "";
+    }
+</script>
+
+</body>
+</html>

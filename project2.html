@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>S4ILERS | JOHN</title>
+
+    <style>
+        /* css is written directly here instead of using an external stylesheet */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* main calculator container styling */
+
+        .calculator {
+            background: #111;
+            padding: 25px;
+            border-radius: 12px;
+            width: 280px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        /* heading styles inside calculator */
+
+        .calculator h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .calculator p {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 15px;
+        }
+
+        /* display input where numbers and results are shown */
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+            text-align: right;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        /* grid layout for calculator buttons */
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        /* general button styling */
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2c2c2c;
+            color: white;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        /* hover effect for buttons */
+
+        button:hover {
+            background: #444;
+        }
+
+        /* click animation for buttons */
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* operator buttons (+, -, etc) */
+
+        .operator {
+            background: #ff9800;
+        }
+
+        .operator:hover {
+            background: #e68900;
+        }
+
+        /* clear button styling */
+
+        .clear {
+            background: #f44336;
+        }
+
+        /* equals button styling and width */
+
+        .equals {
+            background: #4CAF50;
+            grid-column: span 2;
+        }
+
+        /* message text shown below calculator */
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<!-- main calculator container -->
+
+<div class="calculator">
+    <h1>Hidden Devs</h1>
+    <p>Calculator Edition</p>
+
+    <!-- display field (disabled so user can’t type manually) -->
+
+    <input type="text" id="display" disabled>
+
+    <!-- all calculator buttons -->
+
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="appendValue('/')">÷</button>
+        <button onclick="appendValue('*')">×</button>
+        <button class="operator" onclick="appendValue('-')">−</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button class="equals" onclick="calculate()">=</button>
+    </div>
+
+    <!-- message area to show calculator messages -->
+
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+    // grabbing the display and message elements from the DOM
+
+    const display = document.getElementById("display");
+    const message = document.getElementById("message");
+
+    // function to add numbers/operators to the display
+
+    function appendValue(value) {
+        message.textContent = "";
+        display.value += value;
+    }
+
+    // clears the calculator display and shows a reset message
+
+    function clearDisplay() {
+        display.value = "";
+        message.textContent = "Calculator reset by Hidden Devs";
+    }
+
+    // calculates the result when '=' is pressed
+
+    function calculate() {
+        try {
+            // preventing division by zero
+            if (display.value.includes("/0")) {
+                message.textContent = "Hidden Devs says: Don't divide by 0";
+                display.value = "";
+                return;
+            }
+
+            // evaluating the math expression
+            display.value = eval(display.value);
+            message.textContent = "Calculated by Hidden Devs";
+        } catch {
+            // handles invalid expressions
+            display.value = "";
+            message.textContent = "Invalid calculation";
+        }
+    }
+</script>
+
+</body>
+</html>
